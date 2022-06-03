@@ -31,7 +31,7 @@ public class Serwer {
             String wiadomosc;
             try {
             while ((wiadomosc = czytelnik.readLine()) != null) {
-                System.out.println("Odczytano: " +wiadomosc);
+                System.out.println("Read: " +wiadomosc);
                 rozeslijDoWszystkich(wiadomosc);
             }
             }catch (IOException ex) {
@@ -42,7 +42,7 @@ public class Serwer {
     }
     
     public static void main(String[] args){
-        System.out.println("dsda");
+        System.out.println("start");
         new Serwer().doRoboty();
     }   
     
@@ -56,7 +56,7 @@ public class Serwer {
                 strumienieWyjsciowe.add(pisarz);
                 Thread watekKlienta = new Thread(new ObslugaKlienta(gniazdoKlienta));
                 watekKlienta.start();
-                System.out.println("Nawiązano połączenie!");
+                System.out.println("Conection has been successfully reached!");
             }
         } catch (Exception ex) {
         ex.printStackTrace();

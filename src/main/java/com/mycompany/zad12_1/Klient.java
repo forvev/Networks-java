@@ -1,15 +1,12 @@
 package com.mycompany.zad12_1;
 
 import java.awt.BorderLayout;
-import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.*;
-import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.*;
 import java.io.*;
 import java.net.*;
-import java.util.Scanner;
 import javax.swing.*;
 
 public class Klient extends JFrame{ // inheration for setLayout
@@ -36,14 +33,14 @@ public class Klient extends JFrame{ // inheration for setLayout
         try{
             klient.polaczMnie();
         }catch(Exception e){
-            
+            System.out.println("stop");
         }
         
         
     }
     
     Klient(){
-        frame = new JFrame("Prosty klient czatu");
+        frame = new JFrame("Basic client chat");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         panel = new JPanel();
         
@@ -51,7 +48,7 @@ public class Klient extends JFrame{ // inheration for setLayout
         
         int pom=65;
         
-        
+        //we create a table of chars here
         tab_Vigenere = new char[26][];
         for(int i=0; i<tab_Vigenere.length; i++){
             tab_Vigenere[i] = new char[26];
@@ -83,11 +80,11 @@ public class Klient extends JFrame{ // inheration for setLayout
         przewijanie.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         
         wiadomosc = new JTextField(20);
-        JButton przyciskWyslij = new JButton("Wyslij");
+        JButton przyciskWyslij = new JButton("Send");
         przyciskWyslij.addActionListener(new SluchaczPrzycisku());
         
         //-moje
-        e1 = new JLabel("Wprowadz dane:");
+        e1 = new JLabel("Provide data:");
         
         GridBagConstraints c = new GridBagConstraints();
         c.gridx=0;
@@ -95,7 +92,7 @@ public class Klient extends JFrame{ // inheration for setLayout
         c.insets = new Insets(2,2,2,2);
         panel2.add(e1, c);
         
-        e2 = new JLabel("Autor:");
+        e2 = new JLabel("Author:");
         c.gridx=0;
         c.gridy=1;
         panel2.add(e2,c);
@@ -105,7 +102,7 @@ public class Klient extends JFrame{ // inheration for setLayout
         c.gridy=1;
         panel2.add(autor,c);
         
-        e3 = new JLabel("Data:");
+        e3 = new JLabel("Date:");
         c.gridx=0;
         c.gridy=2;
         panel2.add(e3,c);
@@ -161,12 +158,12 @@ public class Klient extends JFrame{ // inheration for setLayout
             
             
             
-            System.out.println("Zakończono konfiguracje sieci");
+            System.out.println("Network configuration has been finished");
         } catch (IOException ex) {
-            System.out.println("Konfiguracja sieci nie powiodła się!");
+            System.out.println("Network configuration has been failed!");
             ex.printStackTrace();
         }catch(Exception e){
-            System.out.println("siema");
+            System.out.println("...");
         }
     }
     private class SluchaczPrzycisku implements ActionListener{
@@ -210,7 +207,7 @@ public class Klient extends JFrame{ // inheration for setLayout
             
             try {
                 while ((wiad = czytelnik.readLine()) != null){
-                    System.out.println("Odczytano: " + wiad);
+                    System.out.println("Read: " + wiad);
                     wiad=decryption(wiad);
                     odbiorWiadomosci.append(wiad.toLowerCase() + "\n");
                 }
